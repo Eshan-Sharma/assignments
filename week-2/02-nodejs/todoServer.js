@@ -41,7 +41,7 @@
  */
   const express = require('express');
   const bodyParser = require('body-parser');
-  const port = 3000;
+  const port = 5050;
   const app = express();
   
   const todos = [];//id, title, description
@@ -104,8 +104,8 @@
     res.status(404).send(`Page does not exists. Error 404.`);
   });
 
-  // app.listen(port, () => {
-  //   console.log(`Example app listening on port ${port}`)
-  // })
+  app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+  })
 
   module.exports = app;
