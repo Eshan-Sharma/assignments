@@ -41,9 +41,71 @@
  */
   const express = require('express');
   const bodyParser = require('body-parser');
-  
+  const port = 3000;
   const app = express();
   
+  const todos = [];//id, title, description
+
   app.use(bodyParser.json());
   
+  app.get('/todos', (req, res)=>{
+    // res.send('GET request to the todos');
+    res.status(200).json(todos);
+  });
+
+  app.get('/todos/:id', (req, res)=>{
+    // res.send('GET request to the todos using id: '+(parseInt(req.params.id)));
+
+    //Syntax MDN - const found = array1.find((element) => element > 10);
+    const todo = todos.find((e)=>e.id===parseInt(req.params.id));
+    if(!todo){
+      res.status(404).send(`Page does not exists. Error 404.`);
+    }else{
+      res.json(todo);
+    }
+  });
+
+  app.post('/todos', (req, res)=>{
+    // res.send('POST request to todos');
+    const todo = {
+      'id':Math.floor(Math.random()*100000),
+      'title':req.body.title,
+      'description':req.body.description
+    }
+    todos.push(todo);
+    res.status(201).json(todo);
+  });
+
+  app.put('/todos/:id', (req, res)=>{
+    // res.send('PUT request to todos');
+    // Here the main issue is getting the id
+    const todoIndex = todos.findIndex((e)=>e.id===parseInt(req.params.id));
+    if(todoIndex===-1){
+      res.status(404).send(`Page does not exists. Error 404.`);
+    }else{
+      todos[todoIndex].title = req.body.title;
+      todos[todoIndex].description = req.body.description;
+      res.status(200).json(todos[todoIndex]);
+    }
+  });
+
+  app.delete('/todos/:id', (req, res)=>{
+    // res.send('DELETE request to todo id');
+    const todoIndex = todos.findIndex((e)=>e.id===parseInt(req.params.id));
+    if(todoIndex===-1){
+      res.status(404).send(`Page does not exists. Error 404.`);
+    }else{
+      todos.splice(todoIndex,1);
+      res.status(200).json(todos);
+    }
+  });
+
+  app.use((req, res, next)=>{
+    res.status(404).send(`Page does not exists. Error 404.`);
+  });
+
+  // app.listen(port, () => {
+  //   console.log(`Example app listening on port ${port}`)
+  // })
+
   module.exports = app;
