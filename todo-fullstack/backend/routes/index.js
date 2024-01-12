@@ -1,10 +1,12 @@
 const express = require("express");
 const { createTodo, updateTodo } = require("../middleware/types");
 const { todo } = require("../db/db");
+const cors = require("cors");
 const app = express();
 const port = 3030;
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (req,res)=>{
     res.json({msg:"Here"});
@@ -18,6 +20,7 @@ app.get("/allTodos", async (req,res)=>{
 app.post("/todo",async (req,res)=>{
     //zod validation 
     const createPayload = req.body;
+    console.log(req.body)
     const parsedPayload = createTodo.safeParse(createPayload);
     if(!parsedPayload.success){
         res.status(411).json({
