@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+      <div className="hero-div">
+        <h1 className="child">Eshan Sharma</h1>
+        <p className="child" style={{ textAlign: "left", marginLeft: "43px" }}>
+          I am a <b>Web Developer</b> in Harkirat's Cohort
         </p>
+        <h3 className="child" style={{ textAlign: "left", marginLeft: "43px" }}>
+          Interested
+        </h3>
+        <h3>
+          <ul
+            className="list"
+            style={{ textAlign: "left", marginLeft: "43px" }}
+          >
+            <li>Learning</li>
+            <li>Development</li>
+            <li>Cycling</li>
+          </ul>
+        </h3>
+        <div className="section">
+          <button className="btn">
+            <a href="https://www.linkedin.com/in/eshan-sharma-a87b12190/">LinkedIn</a>
+          </button>
+          <button className="btn">
+            <a href="https://twitter.com/Eshan_Sharma__">X (Twitter)</a>
+          </button>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
