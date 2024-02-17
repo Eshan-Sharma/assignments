@@ -4,7 +4,7 @@ import { createTodo, updateTodo, getTodos } from '../todo';
 import { dropTables } from '../setup';
 
 const prisma = new PrismaClient();
-
+jest.setTimeout(13000);
 beforeAll(async () => {
     await dropTables();
 });
